@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Meet Randa Tighe, RPN | The InjectR</title>
+  <meta name="description" content="Randa Tighe is a Registered Practical Nurse and the only injector at The InjectR. Every client is assessed and treated by her, under physician medical direction, with full professional liability coverage.">
+  <link rel="canonical" href="https://theinjectr.com/about">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;450;500;550;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/injectr.css">
+  <style>
+    .about-hero { padding-block: clamp(3rem, 7vw, 6rem) 0; }
+    .about-grid {
+      display: grid;
+      gap: clamp(2.5rem, 5vw, 4.5rem);
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+    @media (min-width: 880px) {
+      .about-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+      .about-portrait { position: sticky; top: 6rem; }
+    }
+    .about-portrait image-slot { width: 100%; aspect-ratio: 4 / 5; display: block; }
+    .about-portrait .portrait-frame {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      border-radius: 4px;
+      background: var(--oat-deep);
+    }
+    .about-portrait .portrait-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .about-duo { display: grid; gap: clamp(1rem, 2vw, 1.5rem); grid-template-columns: 1fr; }
+    @media (min-width: 720px) { .about-duo { grid-template-columns: 1.15fr 0.85fr; align-items: stretch; } }
+    .about-duo figure { margin: 0; }
+    .about-duo .duo-frame { border-radius: 10px; overflow: hidden; background: var(--oat-deep); aspect-ratio: 4 / 5; box-shadow: 0 22px 44px -28px rgba(30, 26, 23, 0.42); }
+    .about-duo .duo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 760ms var(--ease-out); }
+    @media (prefers-reduced-motion: no-preference) { .about-duo .duo-frame:hover img { transform: scale(1.04); } }
+    .about-duo figcaption { margin-top: 0.875rem; font-size: 0.875rem; color: var(--ink-soft); max-width: 40ch; }
+    .about-portrait .portrait-caption { margin-top: 0.875rem; font-size: 0.875rem; color: var(--grey-1); }
+
+    .about-copy h1 { max-width: 12ch; }
+    .about-copy .lede { margin-top: 1.75rem; }
+    .about-copy .body-block { margin-top: 2rem; max-width: var(--measure); color: var(--ink-soft); display: grid; gap: 1.25rem; }
+
+    .pull-quote {
+      margin: clamp(3rem, 6vw, 4.5rem) 0 0;
+      padding: clamp(2rem, 4vw, 3rem) 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .pull-quote blockquote {
+      margin: 0;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.375rem, 2.6vw, 1.875rem);
+      font-weight: 380;
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+      max-width: 26em;
+    }
+    .pull-quote cite {
+      display: block;
+      margin-top: 1rem;
+      font-family: var(--sans);
+      font-style: normal;
+      font-size: 0.8125rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey-1);
+    }
+
+    .creds { padding-bottom: var(--section-y); }
+    .creds-list { list-style: none; margin: 2.5rem 0 0; padding: 0; }
+    .creds-list li {
+      display: grid;
+      gap: 0.375rem 2.5rem;
+      padding-block: 1.5rem;
+      border-top: 1px solid var(--line);
+    }
+    .creds-list li:last-child { border-bottom: 1px solid var(--line); }
+    @media (min-width: 760px) {
+      .creds-list li { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: baseline; }
+    }
+    .creds-list .cred-name { font-family: var(--serif); font-size: 1.25rem; font-weight: 420; }
+    .creds-list .cred-detail { color: var(--ink-soft); }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="lockup" href="index.html" aria-label="The InjectR, home">
+        <span class="brand">The Inject<span class="r">R</span></span>
+        <span class="credential">by Nurse Randa, RPN</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h18M2 11h18M2 16h18"></path></svg>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <a href="treatments.html">Treatments</a>
+        <a href="results.html">Results</a>
+        <a href="about.html" aria-current="page">About</a>
+        <a href="contact.html">Contact</a>
+        <a class="btn btn-primary" href="contact.html">Book a free consultation</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="about-hero" data-screen-label="Meet Randa">
+      <div class="wrap about-grid">
+        <div class="about-portrait" data-reveal>
+          <div class="portrait-frame">
+            <img src="assets/randa-portrait.jpg" width="1024" height="1280" loading="eager" decoding="async" alt="Randa Tighe, RPN, the nurse and only injector at The InjectR, smiling in a dark blazer">
+          </div>
+          <p class="portrait-caption">Randa Tighe, RPN. The only injector at The InjectR.</p>
+        </div>
+        <div class="about-copy">
+          <p class="eyebrow">About</p>
+          <h1>Meet Randa.</h1>
+          <p class="lede">Randa Tighe is a Registered Practical Nurse and the only injector at The InjectR. Every client is assessed and treated by her, from the first consultation to the final result.</p>
+          <div class="body-block">
+            <p>She works under physician medical direction, which means a physician provides the medical authorization behind every treatment on the menu. That oversight, her nursing registration, and full professional liability coverage are the reason to choose a nurse in a field with a lot of unqualified providers.</p>
+            <p>Her approach is conservative. She will tell you when a treatment is not right for you, and when doing less will look better. The work she is proudest of is the kind nobody can identify.</p>
+          </div>
+          <div class="pull-quote" data-reveal>
+            <blockquote>"Same girl, same injector. My before photo is only five years old. What changed was my mindset."</blockquote>
+            <cite>Randa Tighe, RPN</cite>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-gallery" data-screen-label="Randa, in the room">
+      <div class="wrap about-duo">
+        <figure data-reveal>
+          <div class="duo-frame"><img src="assets/img/randa-glow.jpg" loading="lazy" decoding="async" alt="Close-up of Randa, showing her own skin"></div>
+          <figcaption>Same girl, same injector. Randa is her own best example of conservative, consistent work.</figcaption>
+        </figure>
+        <figure data-reveal>
+          <div class="duo-frame"><img src="assets/img/randa-lifestyle.jpg" loading="lazy" decoding="async" alt="Randa out of the studio"></div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="creds" data-screen-label="Credentials">
+      <div class="wrap" data-reveal>
+        <p class="eyebrow">Credentials</p>
+        <h2 style="max-width: 16ch;">The paperwork behind the practice.</h2>
+        <ul class="creds-list">
+          <li>
+            <span class="cred-name">Registered Practical Nurse</span>
+            <span class="cred-detail">Registered with the College of Nurses of Ontario.</span>
+          </li>
+          <li>
+            <span class="cred-name">Physician medical direction</span>
+            <span class="cred-detail">A physician provides the medical authorization behind every treatment offered.</span>
+          </li>
+          <li>
+            <span class="cred-name">Professional liability insurance</span>
+            <span class="cred-detail">Coverage in place for every treatment on the menu.</span>
+          </li>
+        </ul>
+        <p style="margin-top: 3rem;"><a class="btn btn-primary" href="contact.html">Book a free consultation</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a class="lockup" href="index.html">
+            <span class="brand">The Inject<span class="r">R</span></span>
+            <span class="credential">by Nurse Randa, RPN</span>
+          </a>
+          <p class="footer-note">Nurse-led medical aesthetics. Based in Etobicoke, serving the GTA, with in-home visits available. All treatments provided under physician medical direction.</p>
+        </div>
+        <div>
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="treatments.html">Treatments</a></li>
+            <li><a href="results.html">Results</a></li>
+            <li><a href="about.html">About Randa</a></li>
+            <li><a href="contact.html">Book a consultation</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Hours</h4>
+          <ul>
+            <li>Tuesday to Friday, 11am to 7pm</li>
+            <li>Saturday, 10am to 4pm</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-base">
+        <span>The InjectR. Randa Tighe, RPN, College of Nurses of Ontario.</span>
+        <span><a href="privacy.html">Privacy</a> &nbsp;&middot;&nbsp; <a href="terms.html">Terms</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/site.js"></script>
+</body>
+</html>

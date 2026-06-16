@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results | The InjectR | Real Before and After Photos</title>
+  <meta name="description" content="Before and after photos of real clients treated by Randa Tighe, RPN, at The InjectR. Conservative, natural results across eyes, lips, full-face balancing, skin, and hair. All photos shared with client consent.">
+  <link rel="canonical" href="https://theinjectr.com/results">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;450;500;550;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/injectr.css">
+  <style>
+    .gallery { padding-top: clamp(2rem, 4vw, 3rem); }
+
+    .res-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: clamp(2rem, 4vw, 3rem);
+    }
+    .res-chip {
+      font-family: var(--sans);
+      font-size: 0.8125rem;
+      font-weight: 550;
+      letter-spacing: 0.01em;
+      color: var(--ink-soft);
+      background: transparent;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: color 200ms var(--ease-out), background-color 200ms var(--ease-out), border-color 200ms var(--ease-out);
+    }
+    .res-chip:hover { border-color: var(--clay); color: var(--ink); }
+    .res-chip.is-active { background: var(--ink); color: var(--oat); border-color: var(--ink); }
+
+    .res-masonry { column-count: 4; column-gap: clamp(1rem, 2vw, 1.5rem); }
+    @media (max-width: 1100px) { .res-masonry { column-count: 3; } }
+    @media (max-width: 760px)  { .res-masonry { column-count: 2; } }
+    @media (max-width: 460px)  { .res-masonry { column-count: 1; } }
+
+    .res-item {
+      break-inside: avoid;
+      margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    }
+    .res-item[hidden] { display: none; }
+    .res-figure {
+      position: relative;
+      margin: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--oat-deep);
+      cursor: zoom-in;
+      box-shadow: 0 14px 30px -22px rgba(30, 26, 23, 0.5);
+    }
+    .res-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 720ms var(--ease-out);
+    }
+    .res-figure .res-tag {
+      position: absolute;
+      left: 0.625rem;
+      top: 0.625rem;
+      z-index: 2;
+      font-family: var(--sans);
+      font-size: 0.5625rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--oat);
+      background: rgba(30, 26, 23, 0.6);
+      border-radius: 999px;
+      padding: 0.3rem 0.65rem;
+      pointer-events: none;
+    }
+    .res-item .res-cat {
+      font-family: var(--sans);
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--clay-deep);
+      margin: 0.875rem 0 0.3rem;
+    }
+    .res-item .res-cap {
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      margin: 0;
+      text-wrap: pretty;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .res-figure:hover img { transform: scale(1.04); }
+    }
+
+    .res-consent {
+      margin-top: clamp(2.5rem, 5vw, 3.5rem);
+      font-size: 0.8125rem;
+      color: var(--grey-1);
+      max-width: 60ch;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(1.5rem, 5vw, 4rem);
+      background: rgba(30, 26, 23, 0.92);
+      cursor: zoom-out;
+    }
+    .lightbox.is-open { display: flex; }
+    .lightbox img {
+      max-width: 100%;
+      max-height: 86vh;
+      border-radius: 6px;
+      box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.6);
+    }
+    .lightbox .lb-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(246, 241, 234, 0.4);
+      background: transparent;
+      color: var(--oat);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox .lb-cap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 1.25rem;
+      text-align: center;
+      color: rgba(246, 241, 234, 0.85);
+      font-size: 0.875rem;
+      padding-inline: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="lockup" href="index.html" aria-label="The InjectR, home">
+        <span class="brand">The Inject<span class="r">R</span></span>
+        <span class="credential">by Nurse Randa, RPN</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h18M2 11h18M2 16h18"></path></svg>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <a href="treatments.html">Treatments</a>
+        <a href="results.html" aria-current="page">Results</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a class="btn btn-primary" href="contact.html">Book a free consultation</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="page-hero" data-screen-label="Results hero">
+      <div class="wrap">
+        <p class="eyebrow">Results</p>
+        <h1>The work is conservative on purpose.</h1>
+        <p class="lede">Real clients, treated by Randa, photographed in the room. Brighter eyes, smoother skin, restored balance. Individual results vary. All photos shared with client consent.</p>
+      </div>
+    </section>
+
+    <section class="gallery" data-screen-label="Results gallery">
+      <div class="wrap">
+
+        <div class="res-filters" role="tablist" aria-label="Filter results by treatment">
+          <button class="res-chip is-active" type="button" data-filter="all" aria-pressed="true">All results</button>
+          <button class="res-chip" type="button" data-filter="lips" aria-pressed="false">Lips</button>
+          <button class="res-chip" type="button" data-filter="undereye" aria-pressed="false">Under-eye</button>
+          <button class="res-chip" type="button" data-filter="wrinkle" aria-pressed="false">Wrinkle-relaxing</button>
+          <button class="res-chip" type="button" data-filter="balancing" aria-pressed="false">Balancing</button>
+          <button class="res-chip" type="button" data-filter="skin" aria-pressed="false">Skin and PRP</button>
+          <button class="res-chip" type="button" data-filter="hair" aria-pressed="false">PRP for hair</button>
+          <button class="res-chip" type="button" data-filter="tightening" aria-pressed="false">Skin tightening</button>
+          <button class="res-chip" type="button" data-filter="body" aria-pressed="false">Body</button>
+          <button class="res-chip" type="button" data-filter="transformation" aria-pressed="false">Rejuvenation</button>
+        </div>
+
+        <div class="res-masonry" id="res-masonry">
+          <figure class="res-item" data-cat="balancing" data-reveal><div class="res-figure" data-lightbox data-cap="Full-face balancing. Placed to restore proportion, not to change the face."><img src="assets/results/r54.jpg" width="709" height="706" loading="lazy" decoding="async" alt="Before and after full-face balancing"><span class="res-tag">Before / After</span></div><p class="res-cat">Balancing</p><p class="res-cap">Full-face balancing. Restored proportion, still her.</p></figure>
+          <figure class="res-item" data-cat="lips" data-reveal><div class="res-figure" data-lightbox data-cap="Conservative lip enhancement, built gradually."><img src="assets/results/r03.jpg" width="648" height="914" loading="lazy" decoding="async" alt="Before and after lip enhancement"><span class="res-tag">Before / After</span></div><p class="res-cat">Lips</p><p class="res-cap">Conservative lip enhancement. Soft and balanced.</p></figure>
+          <figure class="res-item" data-cat="undereye" data-reveal><div class="res-figure" data-lightbox data-cap="Under-eye treatment, one session. Brighter, less tired."><img src="assets/results/r01.jpg" width="782" height="980" loading="lazy" decoding="async" alt="Before and after under-eye treatment"><span class="res-tag">Before / After</span></div><p class="res-cat">Under-eye</p><p class="res-cap">Under-eye, one session. Brighter, less tired.</p></figure>
+          <figure class="res-item" data-cat="wrinkle" data-reveal><div class="res-figure" data-lightbox data-cap="Frown lines softened with wrinkle-relaxing injections."><img src="assets/results/r40.jpg" width="519" height="980" loading="lazy" decoding="async" alt="Before and after frown line treatment"><span class="res-tag">Before / After</span></div><p class="res-cat">Wrinkle-relaxing</p><p class="res-cap">Frown lines softened, expression intact.</p></figure>
+          <figure class="res-item" data-cat="hair" data-reveal><div class="res-figure" data-lightbox data-cap="PRP for hair, a series. Fuller through the crown."><img src="assets/results/r11.jpg" width="619" height="980" loading="lazy" decoding="async" alt="Before and after PRP hair treatment"><span class="res-tag">Before / After</span></div><p class="res-cat">PRP for hair</p><p class="res-cap">PRP for hair. Fuller through the crown.</p></figure>
+          <figure class="res-item" data-cat="skin" data-reveal><div class="res-figure" data-lightbox data-cap="Texture and tone after a series of PRP microneedling."><img src="assets/results/r42.jpg" width="519" height="980" loading="lazy" decoding="async" alt="Before and after skin texture treatment"><span class="res-tag">Before / After</span></div><p class="res-cat">Skin and PRP</p><p class="res-cap">Texture and tone after PRP microneedling.</p></figure>
+          <figure class="res-item" data-cat="tightening" data-reveal><div class="res-figure" data-lightbox data-cap="Lower face lifted and firmer."><img src="assets/results/r50.jpg" width="616" height="980" loading="lazy" decoding="async" alt="Before and after lower face tightening"><span class="res-tag">Before / After</span></div><p class="res-cat">Skin tightening</p><p class="res-cap">Lower face, lifted and firmer.</p></figure>
+          <figure class="res-item" data-cat="body" data-reveal><div class="res-figure" data-lightbox data-cap="Abdomen, firmer and smoother after skin tightening."><img src="assets/results/r64.jpg" width="545" height="969" loading="lazy" decoding="async" alt="Before and after abdomen skin tightening"><span class="res-tag">Before / After</span></div><p class="res-cat">Body</p><p class="res-cap">Abdomen, firmer and smoother.</p></figure>
+          <figure class="res-item" data-cat="lips" data-reveal><div class="res-figure" data-lightbox data-cap="Lip hydration and shape, built gradually."><img src="assets/results/r25.jpg" width="548" height="980" loading="lazy" decoding="async" alt="Before and after lip treatment"><span class="res-tag">Before / After</span></div><p class="res-cat">Lips</p><p class="res-cap">Lip hydration and shape, built gradually.</p></figure>
+          <figure class="res-item" data-cat="wrinkle" data-reveal><div class="res-figure" data-lightbox data-cap="Glabella and brow, relaxed and gently lifted."><img src="assets/results/r48.jpg" width="547" height="980" loading="lazy" decoding="async" alt="Before and after brow treatment"><span class="res-tag">Before / After</span></div><p class="res-cat">Wrinkle-relaxing</p><p class="res-cap">Brow relaxed and gently lifted.</p></figure>
+          <figure class="res-item" data-cat="balancing" data-reveal><div class="res-figure" data-lightbox data-cap="Jaw and chin definition, kept natural."><img src="assets/results/r09.jpg" width="672" height="980" loading="lazy" decoding="async" alt="Before and after jaw definition"><span class="res-tag">Before / After</span></div><p class="res-cat">Balancing</p><p class="res-cap">Jaw and chin definition.</p></figure>
+          <figure class="res-item" data-cat="skin" data-reveal><div class="res-figure" data-lightbox data-cap="Skin clarity and tone."><img src="assets/results/r75.jpg" width="705" height="576" loading="lazy" decoding="async" alt="Before and after skin clarity"><span class="res-tag">Before / After</span></div><p class="res-cat">Skin and PRP</p><p class="res-cap">Skin clarity and even tone.</p></figure>
+          <figure class="res-item" data-cat="transformation" data-reveal><div class="res-figure" data-lightbox data-cap="Full rejuvenation, gradual and natural."><img src="assets/results/r12.jpg" width="540" height="927" loading="lazy" decoding="async" alt="Before and after full rejuvenation"><span class="res-tag">Before / After</span></div><p class="res-cat">Rejuvenation</p><p class="res-cap">Full rejuvenation, gradual and natural.</p></figure>
+          <figure class="res-item" data-cat="tightening" data-reveal><div class="res-figure" data-lightbox data-cap="Neck and jaw, tightened over a series."><img src="assets/results/r61.jpg" width="733" height="980" loading="lazy" decoding="async" alt="Before and after neck tightening"><span class="res-tag">Before / After</span></div><p class="res-cat">Skin tightening</p><p class="res-cap">Neck and jaw, tightened.</p></figure>
+          <figure class="res-item" data-cat="lips" data-reveal><div class="res-figure" data-lightbox data-cap="Subtle lip definition, kept natural."><img src="assets/results/r24.jpg" width="543" height="980" loading="lazy" decoding="async" alt="Before and after lip definition"><span class="res-tag">Before / After</span></div><p class="res-cat">Lips</p><p class="res-cap">Subtle lip definition.</p></figure>
+          <figure class="res-item" data-cat="hair" data-reveal><div class="res-figure" data-lightbox data-cap="PRP for hair, density restored."><img src="assets/results/r17.jpg" width="518" height="980" loading="lazy" decoding="async" alt="Before and after PRP hair density"><span class="res-tag">Before / After</span></div><p class="res-cat">PRP for hair</p><p class="res-cap">Density restored over a series.</p></figure>
+          <figure class="res-item" data-cat="undereye" data-reveal><div class="res-figure" data-lightbox data-cap="Under-eye and skin. Rested, not changed."><img src="assets/results/r38.jpg" width="518" height="980" loading="lazy" decoding="async" alt="Before and after under-eye and skin"><span class="res-tag">Before / After</span></div><p class="res-cat">Under-eye</p><p class="res-cap">Under-eye and skin. Rested, not changed.</p></figure>
+          <figure class="res-item" data-cat="body" data-reveal><div class="res-figure" data-lightbox data-cap="Waist and back, tightened."><img src="assets/results/r71.jpg" width="523" height="980" loading="lazy" decoding="async" alt="Before and after waist tightening"><span class="res-tag">Before / After</span></div><p class="res-cat">Body</p><p class="res-cap">Waist and back, tightened.</p></figure>
+          <figure class="res-item" data-cat="wrinkle" data-reveal><div class="res-figure" data-lightbox data-cap="Forehead, smoother and rested."><img src="assets/results/r63.jpg" width="781" height="980" loading="lazy" decoding="async" alt="Before and after forehead treatment"><span class="res-tag">Before / After</span></div><p class="res-cat">Wrinkle-relaxing</p><p class="res-cap">Forehead, smoother and rested.</p></figure>
+          <figure class="res-item" data-cat="balancing" data-reveal><div class="res-figure" data-lightbox data-cap="Profile balance, conservative."><img src="assets/results/r29.jpg" width="499" height="980" loading="lazy" decoding="async" alt="Before and after profile balancing"><span class="res-tag">Before / After</span></div><p class="res-cat">Balancing</p><p class="res-cap">Profile balance, conservative.</p></figure>
+          <figure class="res-item" data-cat="skin" data-reveal><div class="res-figure" data-lightbox data-cap="Smoother skin, fewer breakouts."><img src="assets/results/r18.jpg" width="548" height="980" loading="lazy" decoding="async" alt="Before and after clearer skin"><span class="res-tag">Before / After</span></div><p class="res-cat">Skin and PRP</p><p class="res-cap">Smoother skin, fewer breakouts.</p></figure>
+          <figure class="res-item" data-cat="tightening" data-reveal><div class="res-figure" data-lightbox data-cap="Jawline definition restored."><img src="assets/results/r76.jpg" width="592" height="980" loading="lazy" decoding="async" alt="Before and after jawline definition"><span class="res-tag">Before / After</span></div><p class="res-cat">Skin tightening</p><p class="res-cap">Jawline definition restored.</p></figure>
+          <figure class="res-item" data-cat="lips" data-reveal><div class="res-figure" data-lightbox data-cap="Lip balance, refined over two visits."><img src="assets/results/r36.jpg" width="541" height="966" loading="lazy" decoding="async" alt="Before and after lip balance"><span class="res-tag">Before / After</span></div><p class="res-cat">Lips</p><p class="res-cap">Lip balance, refined over two visits.</p></figure>
+          <figure class="res-item" data-cat="hair" data-reveal><div class="res-figure" data-lightbox data-cap="Hairline regrowth over a series of PRP."><img src="assets/results/r44.jpg" width="657" height="980" loading="lazy" decoding="async" alt="Before and after hairline regrowth"><span class="res-tag">Before / After</span></div><p class="res-cat">PRP for hair</p><p class="res-cap">Hairline regrowth over a series.</p></figure>
+          <figure class="res-item" data-cat="transformation" data-reveal><div class="res-figure" data-lightbox data-cap="Overall freshness, kept like her."><img src="assets/results/r56.jpg" width="604" height="980" loading="lazy" decoding="async" alt="Before and after rejuvenation"><span class="res-tag">Before / After</span></div><p class="res-cat">Rejuvenation</p><p class="res-cap">Overall freshness, still like her.</p></figure>
+          <figure class="res-item" data-cat="body" data-reveal><div class="res-figure" data-lightbox data-cap="Skin tightening on the legs."><img src="assets/results/r73.jpg" width="709" height="708" loading="lazy" decoding="async" alt="Before and after leg skin tightening"><span class="res-tag">Before / After</span></div><p class="res-cat">Body</p><p class="res-cap">Skin tightening on the legs.</p></figure>
+          <figure class="res-item" data-cat="lips" data-reveal><div class="res-figure" data-lightbox data-cap="Lip enhancement, one visit."><img src="assets/results/r22.jpg" width="548" height="980" loading="lazy" decoding="async" alt="Before and after lip enhancement"><span class="res-tag">Before / After</span></div><p class="res-cat">Lips</p><p class="res-cap">Lip enhancement, one visit.</p></figure>
+          <figure class="res-item" data-cat="wrinkle" data-reveal><div class="res-figure" data-lightbox data-cap="Forehead lines softened."><img src="assets/results/r13.jpg" width="520" height="980" loading="lazy" decoding="async" alt="Before and after forehead lines"><span class="res-tag">Before / After</span></div><p class="res-cat">Wrinkle-relaxing</p><p class="res-cap">Forehead lines softened.</p></figure>
+          <figure class="res-item" data-cat="balancing" data-reveal><div class="res-figure" data-lightbox data-cap="Jawline contour from the side."><img src="assets/results/r55.jpg" width="708" height="693" loading="lazy" decoding="async" alt="Before and after jawline contour"><span class="res-tag">Before / After</span></div><p class="res-cat">Balancing</p><p class="res-cap">Jawline contour, from the side.</p></figure>
+          <figure class="res-item" data-cat="skin" data-reveal><div class="res-figure" data-lightbox data-cap="Acne scarring softened."><img src="assets/results/r72.jpg" width="515" height="980" loading="lazy" decoding="async" alt="Before and after acne scarring"><span class="res-tag">Before / After</span></div><p class="res-cat">Skin and PRP</p><p class="res-cap">Acne scarring softened.</p></figure>
+          <figure class="res-item" data-cat="tightening" data-reveal><div class="res-figure" data-lightbox data-cap="Chin and neck profile, firmer."><img src="assets/results/r59.jpg" width="740" height="980" loading="lazy" decoding="async" alt="Before and after chin and neck"><span class="res-tag">Before / After</span></div><p class="res-cat">Skin tightening</p><p class="res-cap">Chin and neck profile, firmer.</p></figure>
+          <figure class="res-item" data-cat="body" data-reveal><div class="res-figure" data-lightbox data-cap="Abdomen after a course of skin tightening."><img src="assets/results/r51.jpg" width="758" height="980" loading="lazy" decoding="async" alt="Before and after abdomen"><span class="res-tag">Before / After</span></div><p class="res-cat">Body</p><p class="res-cap">Abdomen after skin tightening.</p></figure>
+          <figure class="res-item" data-cat="lips" data-reveal><div class="res-figure" data-lightbox data-cap="Lip shape and symmetry."><img src="assets/results/r77.jpg" width="786" height="980" loading="lazy" decoding="async" alt="Before and after lip symmetry"><span class="res-tag">Before / After</span></div><p class="res-cat">Lips</p><p class="res-cap">Lip shape and symmetry.</p></figure>
+          <figure class="res-item" data-cat="transformation" data-reveal><div class="res-figure" data-lightbox data-cap="Long-term results, photographed in daylight."><img src="assets/results/r79.jpg" width="930" height="980" loading="lazy" decoding="async" alt="Before and after long-term results"><span class="res-tag">Before / After</span></div><p class="res-cat">Rejuvenation</p><p class="res-cap">Long-term results, in daylight.</p></figure>
+        </div>
+
+        <p class="res-consent">Every photo here is a real client of The InjectR, treated by Randa, and shared with written consent. Individual results vary. Photographs are not retouched beyond cropping and consistent lighting.</p>
+      </div>
+    </section>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <button class="lb-close" type="button" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"></path></svg>
+      </button>
+      <img id="lb-img" src="" alt="">
+      <p class="lb-cap" id="lb-cap"></p>
+    </div>
+
+    <section class="rule-top" data-screen-label="Results CTA">
+      <div class="wrap" data-reveal>
+        <h2 style="max-width: 18ch;">Curious what is possible for your face?</h2>
+        <p class="lede" style="margin-top: 1.25rem;">The consultation is free, and honest. Sometimes the recommendation is to do less, or nothing yet.</p>
+        <p style="margin-top: 2rem;"><a class="btn btn-primary" href="contact.html">Book a free consultation</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a class="lockup" href="index.html">
+            <span class="brand">The Inject<span class="r">R</span></span>
+            <span class="credential">by Nurse Randa, RPN</span>
+          </a>
+          <p class="footer-note">Nurse-led medical aesthetics. Based in Etobicoke, serving the GTA, with in-home visits available. All treatments provided under physician medical direction.</p>
+        </div>
+        <div>
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="treatments.html">Treatments</a></li>
+            <li><a href="results.html">Results</a></li>
+            <li><a href="about.html">About Randa</a></li>
+            <li><a href="contact.html">Book a consultation</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Hours</h4>
+          <ul>
+            <li>Tuesday to Friday, 11am to 7pm</li>
+            <li>Saturday, 10am to 4pm</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-base">
+        <span>The InjectR. Randa Tighe, RPN, College of Nurses of Ontario.</span>
+        <span><a href="privacy.html">Privacy</a> &nbsp;&middot;&nbsp; <a href="terms.html">Terms</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/site.js"></script>
+  <script>
+    (function () {
+      var chips = Array.prototype.slice.call(document.querySelectorAll(".res-chip"));
+      var items = Array.prototype.slice.call(document.querySelectorAll(".res-item"));
+      chips.forEach(function (chip) {
+        chip.addEventListener("click", function () {
+          var f = chip.getAttribute("data-filter");
+          chips.forEach(function (c) {
+            var on = c === chip;
+            c.classList.toggle("is-active", on);
+            c.setAttribute("aria-pressed", on ? "true" : "false");
+          });
+          items.forEach(function (it) {
+            it.hidden = !(f === "all" || it.getAttribute("data-cat") === f);
+          });
+        });
+      });
+
+      var lb = document.getElementById("lightbox");
+      var lbImg = document.getElementById("lb-img");
+      var lbCap = document.getElementById("lb-cap");
+      function open(src, cap, alt) {
+        lbImg.setAttribute("src", src);
+        lbImg.setAttribute("alt", alt || "");
+        lbCap.textContent = cap || "";
+        lb.classList.add("is-open");
+        lb.setAttribute("aria-hidden", "false");
+      }
+      function close() {
+        lb.classList.remove("is-open");
+        lb.setAttribute("aria-hidden", "true");
+        lbImg.setAttribute("src", "");
+      }
+      document.querySelectorAll(".res-figure[data-lightbox]").forEach(function (fig) {
+        fig.addEventListener("click", function () {
+          var img = fig.querySelector("img");
+          open(img.getAttribute("src"), fig.getAttribute("data-cap"), img.getAttribute("alt"));
+        });
+      });
+      lb.addEventListener("click", close);
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && lb.classList.contains("is-open")) close();
+      });
+    })();
+  </script>
+</body>
+</html>
