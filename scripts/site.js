@@ -226,34 +226,48 @@
      ([data-vplayer]): nothing downloads until the user presses play. */
   (function () {
     var ambient = Array.prototype.slice.call(document.querySelectorAll("video[data-autoplay]"));
-    if (ambient.length && "IntersectionObserver" in window) {
+    if (ambient.length) {
       var startVideo = function (v) {
-        // iOS will NOT autoplay unless muted/playsInline are set as PROPERTIES
-        // (the HTML attributes alone are unreliable once src is assigned by JS).
-        v.muted = true;
-        v.playsInline = true;
-        v.setAttribute("muted", "");
+        // iOS needs muted/playsInline as PROPERTIES (attributes alone unreliable once JS sets src).
+        v.muted = true; v.defaultMuted = true; v.playsInline = true;
+        v.setAttribute("muted", ""); v.setAttribute("playsinline", "");
         if (!v.getAttribute("src") && v.dataset.src) v.setAttribute("src", v.dataset.src);
         var p = v.play();
         if (p && p.catch) {
           p.catch(function () {
-            // iOS can reject a play() issued before the freshly-set src has data; retry when it loads.
             v.addEventListener("loadeddata", function retry() {
               v.removeEventListener("loadeddata", retry);
-              var p2 = v.play();
-              if (p2 && p2.catch) p2.catch(function () {});
+              var p2 = v.play(); if (p2 && p2.catch) p2.catch(function () {});
             });
           });
         }
       };
-      var vio = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          var v = en.target;
-          if (en.isIntersecting) startVideo(v);
-          else if (!v.paused) v.pause();
-        });
-      }, { threshold: 0.25 });
-      ambient.forEach(function (v) { vio.observe(v); });
+      if ("IntersectionObserver" in window) {
+        var vio = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) startVideo(en.target);
+            else if (!en.target.paused) en.target.pause();
+          });
+        }, { threshold: 0.01 });
+        ambient.forEach(function (v) { vio.observe(v); });
+      } else {
+        ambient.forEach(startVideo);
+      }
+      // iOS Low Power Mode (and other autoplay blocks) refuse AUTOMATIC play. The
+      // first real user gesture is permitted to start media, so kick them then.
+      var kick = function () {
+        ambient.forEach(function (v) { if (v.paused) startVideo(v); });
+        window.removeEventListener("touchstart", kick);
+        window.removeEventListener("pointerdown", kick);
+        window.removeEventListener("click", kick);
+      };
+      window.addEventListener("touchstart", kick, { passive: true });
+      window.addEventListener("pointerdown", kick, { passive: true });
+      window.addEventListener("click", kick);
+      // Tapping a loop directly also starts it (manual fallback; never pauses on tap).
+      ambient.forEach(function (v) {
+        v.addEventListener("click", function () { if (v.paused) startVideo(v); });
+      });
     }
 
     document.querySelectorAll("[data-vplayer]").forEach(function (p) {
