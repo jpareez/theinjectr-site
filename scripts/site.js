@@ -226,23 +226,34 @@
      ([data-vplayer]): nothing downloads until the user presses play. */
   (function () {
     var ambient = Array.prototype.slice.call(document.querySelectorAll("video[data-autoplay]"));
-    if (ambient.length) {
-      if (!reducedMotion && "IntersectionObserver" in window) {
-        var vio = new IntersectionObserver(function (entries) {
-          entries.forEach(function (en) {
-            var v = en.target;
-            if (en.isIntersecting) {
-              if (!v.getAttribute("src") && v.dataset.src) v.setAttribute("src", v.dataset.src);
-              var p = v.play();
-              if (p && p.catch) p.catch(function () {});
-            } else if (!v.paused) {
-              v.pause();
-            }
+    if (ambient.length && "IntersectionObserver" in window) {
+      var startVideo = function (v) {
+        // iOS will NOT autoplay unless muted/playsInline are set as PROPERTIES
+        // (the HTML attributes alone are unreliable once src is assigned by JS).
+        v.muted = true;
+        v.playsInline = true;
+        v.setAttribute("muted", "");
+        if (!v.getAttribute("src") && v.dataset.src) v.setAttribute("src", v.dataset.src);
+        var p = v.play();
+        if (p && p.catch) {
+          p.catch(function () {
+            // iOS can reject a play() issued before the freshly-set src has data; retry when it loads.
+            v.addEventListener("loadeddata", function retry() {
+              v.removeEventListener("loadeddata", retry);
+              var p2 = v.play();
+              if (p2 && p2.catch) p2.catch(function () {});
+            });
           });
-        }, { threshold: 0.25 });
-        ambient.forEach(function (v) { vio.observe(v); });
-      }
-      /* reduced motion: leave the poster, never autoplay. */
+        }
+      };
+      var vio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          var v = en.target;
+          if (en.isIntersecting) startVideo(v);
+          else if (!v.paused) v.pause();
+        });
+      }, { threshold: 0.25 });
+      ambient.forEach(function (v) { vio.observe(v); });
     }
 
     document.querySelectorAll("[data-vplayer]").forEach(function (p) {
